@@ -4,6 +4,7 @@ import { updateCartCountDisplay } from './amazon.js';
 import { loadProductsFetch } from '../../data/products.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
+renderOrderTracking();
   async function renderOrderTracking (){
   updateCartCountDisplay();
     let trackingHTML;
@@ -22,9 +23,6 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
     const targetId = productId;
 
     const product = matchingOrder.products.find(p => p.productId === targetId);
-
-
-  //  const productDetails = orders.products.find(p => p.productId === targetId);
 
     trackingHTML = `
       <div class="order-tracking">
@@ -47,7 +45,7 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
       <img class="product-image" src="${matchingProduct.image}">
 
       <div class="progress-labels-container">
-        <div class="progress-label">
+        <div class="progress-label js-just-ordered-label">
           Preparing
         </div>
         <div class="progress-label js-shipped-label">
@@ -71,7 +69,7 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
     if (today.isSame(orderDate, "day")) {
       // Just ordered
-      document.querySelector('.js-ordered-label').classList.add('current-status');
+      document.querySelector('.js-just-ordered-label').classList.add('current-status');
       document.querySelector('.progress-bar').style.width = "10%";
 
     } else if (today.isBefore(estimated, "day")) {

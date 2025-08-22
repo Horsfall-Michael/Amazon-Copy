@@ -42,7 +42,7 @@ async function renderOrders(orders) {
 
     let productsHTML = '';
     for (const productOrdered of order.products) {
-      const product = getProduct(p.productId);
+      const product = getProduct(productOrdered.productId);
        
       
 
@@ -68,8 +68,8 @@ async function renderOrders(orders) {
         </div>
 
         <div class="product-actions">
-          <a href="tracking.html?productId="${product.id}"&orderId="${order.id}">
-            <button class="track-package-button button-secondary js-track-package-btn" data-product-id="${product.id}" data-quantity="${productOrdered.quantity}" data-estimated-delivery-time="${dayjs(p.estimatedDeliveryTime).format("MMMM D")}">
+         <a href="tracking.html?productId=${product.id}&orderId=${order.id}">
+            <button class="track-package-button button-secondary js-track-package-btn" data-product-id="${product.id}" data-quantity="${productOrdered.quantity}" data-estimated-delivery-time="${dayjs(productOrdered.estimatedDeliveryTime).format("MMMM D")}">
               Track package
             </button>
           </a>
@@ -120,5 +120,4 @@ async function renderOrders(orders) {
     updateCartCountDisplay();
   });
  });
-
 }
